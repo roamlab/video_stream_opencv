@@ -56,6 +56,11 @@ double set_camera_fps;
 int max_queue_size;
 bool loop_videofile;
 
+// adding custom settings for VideoCapture to overwrite
+void custom_set_video_cap(){
+    cap.set(CV_CAP_PROP_CONTRAST,0.6);
+}
+
 // Based on the ros tutorial on transforming opencv images to Image messages
 
 sensor_msgs::CameraInfo get_default_camera_info_from_image(sensor_msgs::ImagePtr img){
@@ -136,6 +141,8 @@ void do_capture(ros::NodeHandle &nh) {
 
 int main(int argc, char** argv)
 {
+    custom_set_video_cap();
+
     ros::init(argc, argv, "image_publisher");
     ros::NodeHandle nh;
     ros::NodeHandle _nh("~"); // to get the private params
@@ -260,6 +267,7 @@ int main(int argc, char** argv)
         cap.set(CV_CAP_PROP_FRAME_WIDTH, width_target);
         cap.set(CV_CAP_PROP_FRAME_HEIGHT, height_target);
     }
+
 
     cv::Mat frame;
     sensor_msgs::ImagePtr msg;
