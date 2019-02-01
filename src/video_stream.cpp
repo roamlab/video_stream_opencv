@@ -58,7 +58,7 @@ bool loop_videofile;
 
 // adding custom settings for VideoCapture to overwrite
 void custom_set_video_cap(){
-    cap.set(CV_CAP_PROP_CONTRAST,0.6);
+    cap.set(CV_CAP_PROP_CONTRAST,0.7);
 }
 
 // Based on the ros tutorial on transforming opencv images to Image messages
